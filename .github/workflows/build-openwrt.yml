@@ -105,7 +105,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag1.outputs.release_tag }}
         body_path: release.txt
-        files: openwrt/feeds.conf.default
+        files: openwrt/feeds.config
         
     - name: Download package
       id: package

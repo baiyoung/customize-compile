@@ -90,6 +90,7 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         
     - name: generate config file
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
       id: tag1
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
@@ -100,6 +101,7 @@ jobs:
         
     - name: Upload config release
       uses: softprops/action-gh-release@v1
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:

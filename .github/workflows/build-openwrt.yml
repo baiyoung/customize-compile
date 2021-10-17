@@ -83,7 +83,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag1.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        files: openwrt/feeds.conf.default
 
         
     - name: Update feeds

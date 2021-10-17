@@ -67,7 +67,16 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-
+        
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: openwrt/feeds.conf.default
+        files: ${{ env.FIRMWARE }}/*
+        
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 

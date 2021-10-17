@@ -68,24 +68,6 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
-    - name: Generate release tag
-      id: tag1
-      run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-        touch release.txt
-        echo "🔗openwrt/feeds.conf.default" >> release.txt
-        echo "::set-output name=status::success"
-        
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag1.outputs.release_tag }}
-        body_path: release.txt
-        files: openwrt/feeds.conf.default
-
-        
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -106,7 +88,25 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
+        
+    - name: generate config file
+      id: tag1
+      run: |
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        touch release.txt
+        echo "🔗openwrt/.config" >> release.txt
+        echo "::set-output name=status::success"
+        cp openwrt/.config openwrt/feeds.config
+        
+    - name: Upload config release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag1.outputs.release_tag }}
+        body_path: release.txt
+        files: openwrt/feeds.conf.default
+        
     - name: Download package
       id: package
       run: |

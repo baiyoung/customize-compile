@@ -10,8 +10,31 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 # github package
-rm -rf package/lean/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
+mkdir package/community
+pushd package/community
+rm -rf ../lean/luci-theme-argon
+git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
+popd
+pwd
+pushd package/network/services
+git clone --depth=1 https://github.com/linkease/ddnsto-openwrt
+popd
+pwd
+# Add cpufreq
+# rm -rf package/lean/luci-app-cpufreq
+svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# Fix libssh
+pushd feeds/packages/libs
+rm -rf libssh
+svn co https://github.com/openwrt/packages/trunk/libs/libssh
+popd
+
+# rm -rf package/lean/luci-theme-argon
+# git clone https://github.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate

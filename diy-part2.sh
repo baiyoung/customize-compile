@@ -17,10 +17,7 @@ rm -rf ../lean/luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 popd
 pwd
-pushd package/network/services
-git clone --depth=1 https://github.com/linkease/ddnsto-openwrt
-popd
-pwd
+
 # Add cpufreq
 # rm -rf package/lean/luci-app-cpufreq
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq

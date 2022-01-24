@@ -10,16 +10,16 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 # github package
-mkdir package/community
-pushd package/community
-rm -rf ../lean/luci-theme-argon
-# git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-popd
-pwd
+# mkdir package/community
+# pushd package/community
+# rm -rf ../lean/luci-theme-argon
+# # git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
+# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+# popd
+# pwd
 
 # Add cpufreq
-# rm -rf package/lean/luci-app-cpufreq
+rm -rf package/lean/luci-app-cpufreq
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq

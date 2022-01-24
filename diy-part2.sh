@@ -10,13 +10,13 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 # github package
-# mkdir package/community
-# pushd package/community
-# rm -rf ../lean/luci-theme-argon
-# # git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
-# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-# popd
-# pwd
+mkdir package/community
+pushd package/community
+rm -rf ../lean/luci-theme-argon
+# git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+popd
+pwd
 
 # Add cpufreq
 rm -rf package/lean/luci-app-cpufreq

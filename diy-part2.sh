@@ -11,11 +11,11 @@
 #
 # github package
 mkdir package/community
-# pushd package/community
-# rm -rf ../lean/luci-theme-argon
+pushd package/community
+rm -rf ../lean/luci-theme-argon
 # # git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
-# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-# popd
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+popd
 pwd
 
 # Add cpufreq

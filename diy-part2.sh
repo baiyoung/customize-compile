@@ -10,13 +10,13 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 # github package
-mkdir package/community
+# mkdir package/community
 # pushd package/community
 # rm -rf ../lean/luci-theme-argon
-# # git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
-# git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+# # # git clone --depth 1  https://github.com/jerrykuku/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 # popd
-pwd
+# pwd
 
 # Add cpufreq
 rm -rf package/lean/luci-app-cpufreq
@@ -32,7 +32,7 @@ svn co https://github.com/openwrt/packages/trunk/libs/libssh
 popd
 
 # rm -rf package/lean/luci-theme-argon
-# git clone https://github.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate

@@ -16,7 +16,7 @@
     "luci-app-filetransfer":"文件传输",
     "luci-app-firewall":"添加防火墙",
     "luci-app-frpc":"内网穿透Frp客户端",
-    "luci-app-frps":"内网穿透Frp服务端",
+    // "luci-app-frps":"内网穿透Frp服务端",
     "luci-app-hd-idle":"硬盘休眠",
     "luci-app-jd-dailybonus":"京东签到服务",
     "luci-app-mwan3":"MWAN3负载均衡",
